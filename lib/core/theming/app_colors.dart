@@ -25,4 +25,5 @@ abstract class AppColors {
   static const sunflower = Color(0xFFFDC700);
   static const blackTransparent18 = Color(0x2E000000);
   static const gray100 = Color(0xFFF3F4F6);
+  static const slate900 = Color(0xFF1E2939);
 }

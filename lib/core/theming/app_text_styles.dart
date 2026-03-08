@@ -136,4 +136,10 @@ abstract class AppTextStyles {
     fontWeight: FontWeight.w600,
     color: AppColors.amber,
   );
+
+  static TextStyle font11CoolGrayWeight400 = TextStyle(
+    fontSize: 11.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.coolGray,
+  );
 }

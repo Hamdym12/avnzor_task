@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:avnzor_task/core/theming/app_colors.dart';
+import 'package:avnzor_task/features/search/presentation/widgets/addons_list.dart';
 import 'package:avnzor_task/features/search/presentation/widgets/biryani_categories_list.dart';
 import 'package:avnzor_task/features/search/presentation/widgets/menu_items_grid.dart';
 import 'package:avnzor_task/features/search/presentation/widgets/search_header.dart';
@@ -41,8 +42,14 @@ class SearchScreen extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.only(bottom: 24.h),
+              padding: EdgeInsets.only(top: 24.h, bottom: 24.h),
               child: const MenuItemsGrid(),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.only(bottom: 24.h),
+              child: const AddonsList(),
             ),
           ),
         ],
