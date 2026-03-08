@@ -10,10 +10,11 @@ class SearchTopAppBarContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.w),
+      padding: EdgeInsets.symmetric(horizontal: 16.w).copyWith(
+        bottom: 8.h
+      ),
       child: Stack(
         alignment: AlignmentDirectional.center,
-        fit: StackFit.passthrough,
         children: [
           Center(
             child: Row(

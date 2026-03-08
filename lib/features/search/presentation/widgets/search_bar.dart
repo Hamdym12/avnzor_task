@@ -105,9 +105,16 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.all(4.r),
-                          child: const FindButton(),
+                        GestureDetector(
+                          onTap: () {
+                            _focusNode.requestFocus();
+
+                            /// should search for items
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.all(4.r),
+                            child: const FindButton(),
+                          ),
                         ),
                       ],
                     )
