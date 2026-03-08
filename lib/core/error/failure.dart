@@ -1,119 +1,100 @@
-import 'package:equatable/equatable.dart';
+import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:equatable/equatable.dart';
 
 abstract class Failure extends Equatable {
   final String message;
-  final int? statusCode;
-  final dynamic data;
-
-  const Failure(this.message, {this.statusCode, this.data});
+  const Failure(this.message);
 
   @override
-  List<Object?> get props => [message, statusCode, data];
+  List<Object?> get props => [message];
 
+  factory Failure.fromException(Object exception) {
+    if (exception is Failure) return exception;
+    if (exception is DioException) {
+      switch (exception.type) {
+        case DioExceptionType.connectionTimeout:
+          return const TimeoutFailure("Connection timeout");
+
+        case DioExceptionType.sendTimeout:
+          return const TimeoutFailure("Send timeout");
+
+        case DioExceptionType.receiveTimeout:
+          return const TimeoutFailure("Receive timeout");
+
+        case DioExceptionType.badResponse:
+          final statusCode = exception.response?.statusCode;
+          final data = exception.response?.data;
+          String msg = "";
+
+          if (data is Map<String, dynamic>) {
+            msg = (data['errors'] as List<dynamic>?)
+                ?.map((e) => e['name'].toString())
+                .join(', ') ?? "";
+          } else {
+            msg = "Unexpected server response";
+          }
+          if (statusCode == 401) {
+            return const UnauthorizedFailure();
+          } else if (statusCode == 404) {
+            return NotFoundFailure(msg.toString());
+          } else if (statusCode == 500) {
+            return ServerFailure("Server Error: $msg");
+          } else if (statusCode == 502) {
+            return ServerFailure("Bad Gateway, please try again");
+          } else {
+            return ServerFailure("HTTP $statusCode: $msg");
+          }
+
+        case DioExceptionType.cancel:
+          return const CancelledFailure();
+
+        case DioExceptionType.unknown:
+        default:
+          if (exception.error is SocketException) {
+            return const NetworkFailure();
+          } else {
+            return UnknownFailure(exception.message ?? "Unknown Dio error");
+          }
+      }
+    }
+
+    if (exception is SocketException) {
+      return const NetworkFailure();
+    } else if (exception is TimeoutFailure) {
+      return const TimeoutFailure();
+    } else {
+      return UnknownFailure(exception.toString());
+    }
+  }
   @override
-  String toString() =>
-      'Failure(message: $message, statusCode: $statusCode, data: $data)';
+  String toString() => '$runtimeType: $message';
+}
+
+class NetworkFailure extends Failure {
+  const NetworkFailure() : super("No internet connection");
+}
+
+class TimeoutFailure extends Failure {
+  const TimeoutFailure([super.msg = "Request timed out"]);
 }
 
 class ServerFailure extends Failure {
-  const ServerFailure(
-      super.message, {
-        super.statusCode,
-        super.data,
-      });
+  const ServerFailure([super.msg = "Server error"]);
+}
 
-  factory ServerFailure.fromDioError(DioException dioError) {
-    switch (dioError.type) {
-      case DioExceptionType.connectionTimeout:
-        return const ServerFailure('Connection timeout with server');
+class NotFoundFailure extends Failure {
+  const NotFoundFailure([super.msg = "Resource not found"]);
+}
 
-      case DioExceptionType.sendTimeout:
-        return const ServerFailure('Send timeout with server');
+class UnauthorizedFailure extends Failure {
+  const UnauthorizedFailure() : super("Unauthorized request");
+}
 
-      case DioExceptionType.receiveTimeout:
-        return const ServerFailure('Receive timeout from server');
+class CancelledFailure extends Failure {
+  const CancelledFailure() : super("Request was cancelled");
+}
 
-      case DioExceptionType.badResponse:
-        return ServerFailure.fromResponse(
-          dioError.response?.statusCode,
-          dioError.response,
-        );
-
-      case DioExceptionType.cancel:
-        return const ServerFailure('Request was canceled');
-
-      case DioExceptionType.connectionError:
-        return const ServerFailure('Network connection error\nplease check your internet and try again');
-
-      case DioExceptionType.unknown:
-        if (dioError.message != null &&
-            dioError.message!.contains('SocketException')) {
-          return const ServerFailure(
-              'No network connection. Please check your internet and try again');
-        }
-        return const ServerFailure('Unexpected error occurred, please try again');
-
-      default:
-        return const ServerFailure('Error occurred, try again later');
-    }
-  }
-
-  factory ServerFailure.fromResponse(int? statusCode, Response? response) {
-    final data = response?.data;
-    if (statusCode == 422) {
-      if (data != null && data is Map<String, dynamic>) {
-        final detail = data['detail'];
-        if (detail != null && detail is List) {
-          final messages = detail.map((e) {
-            if (e is Map<String, dynamic>) {
-              return e['msg']?.toString() ?? 'Invalid input';
-            }
-            return 'Invalid input';
-          }).join(', ');
-
-          return ServerFailure(
-            messages,
-            statusCode: statusCode,
-            data: data,
-          );
-        }
-      }
-
-      return ServerFailure(
-        'Validation error occurred',
-        statusCode: statusCode,
-        data: data,
-      );    }
-
-    switch (statusCode) {
-      case 400:
-      case 401:
-      case 403:
-        return ServerFailure(
-          response?.data['error']?['message'] ??
-              'Unauthorized request, please login again',
-          statusCode: statusCode,
-          data: response?.data,
-        );
-      case 404:
-        return ServerFailure(
-          'Resource not found',
-          statusCode: statusCode,
-          data: response?.data,
-        );
-      case 500:
-        return ServerFailure(
-          'Internal server error, please try again later',
-          statusCode: statusCode,
-          data: response?.data,
-        );
-      default:
-        return ServerFailure(
-          'An unexpected error occurred',
-          statusCode: statusCode,
-          data: response?.data,
-        );
-    }
-  }
+class UnknownFailure extends Failure {
+  const UnknownFailure([super.msg = "An unknown error occurred"]);
 }

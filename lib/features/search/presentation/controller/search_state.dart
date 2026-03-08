@@ -20,9 +20,9 @@ final class SearchSuccess extends SearchState {
 }
 
 final class SearchError extends SearchState {
-  final String message;
-  const SearchError(this.message);
+  final String errorMessage;
+  const SearchError(this.errorMessage);
 
   @override
-  List<Object?> get props => [message];
+  List<Object?> get props => [errorMessage];
 }

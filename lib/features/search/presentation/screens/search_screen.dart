@@ -63,7 +63,29 @@ class SearchScreen extends StatelessWidget {
                   );
                 } else if (state is SearchError) {
                   return SliverToBoxAdapter(
-                    child: Center(child: Text(state.message)),
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(24),
+                        child: Column(
+                          spacing: 12.h,
+                          children: [
+                            Text(state.errorMessage, textAlign: TextAlign.center),
+                            OutlinedButton(
+                              onPressed: () {
+                                context.read<SearchCubit>().searchItems('');
+                              },
+                              child: Text(
+                                'Retry',
+                                style: TextStyle(
+                                  color: AppColors.primaryPomegranate,
+                                  fontSize: 16.sp,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   );
                 }
                 return const SliverToBoxAdapter(child: SizedBox.shrink());

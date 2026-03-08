@@ -15,15 +15,9 @@ class SearchRepositoryImpl implements SearchRepository {
   Future<Either<Failure, List<StoreItemEntity>>> getSearchedItems(
     String query,
   ) async {
-    try {
-      final models = await remoteDataSource.getSearchedItems(query);
-      final entities = models.map((model) => model.toEntity()).toList();
-      return Right(entities);
-    } catch (error) {
-      if (error is Failure) {
-        return Left(error);
-      }
-      return Left(ServerFailure(error.toString()));
-    }
+    final result = await remoteDataSource.getSearchedItems(query);
+    return result.map(
+      (models) => models.map((model) => model.toEntity()).toList(),
+    );
   }
 }
