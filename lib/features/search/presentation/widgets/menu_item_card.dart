@@ -39,7 +39,6 @@ class MenuItemCard extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
         children: [
           CardImage(
               imagePath: item.imagePath,

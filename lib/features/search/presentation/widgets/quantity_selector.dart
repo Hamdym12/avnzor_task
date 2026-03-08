@@ -43,7 +43,6 @@ class _QuantitySelectorState extends State<QuantitySelector> {
         borderRadius: BorderRadius.circular(14),
       ),
       child: Row(
-        mainAxisSize: MainAxisSize.min,
         spacing: 6.w,
         children: [
           _StepButton(

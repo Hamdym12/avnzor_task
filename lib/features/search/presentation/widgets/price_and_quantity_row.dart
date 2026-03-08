@@ -19,7 +19,7 @@ class PriceAndQuantityRow extends StatelessWidget {
           child: Text(
             'SAR ${item.priceSar.toStringAsFixed(item.priceSar % 1 == 0 ? 0 : 1)}',
             style: AppTextStyles.font16PrimaryWeight700.copyWith(
-              fontSize: 14.sp
+              fontSize: 14.sp,
             ),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,

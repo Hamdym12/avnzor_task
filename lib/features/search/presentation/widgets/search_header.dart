@@ -69,7 +69,7 @@ class SearchHeader extends StatelessWidget {
                           horizontal: 6.w,
                         ),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(11),
+                          borderRadius: BorderRadius.circular(9),
                           gradient: AppGradients.orangeRedGradient,
                         ),
                         child: Row(
