@@ -1,5 +1,12 @@
 # Avnzor Task - Search UI
 
+## Project Demo
+
+A short video demonstrating the search screen functionality.
+
+Video: https://youtu.be/YOSTRjjd928
+
+## Intro
 This application is a specialized platform built for high-performance searching.
 The project is designed with a focus on responsiveness, reliability, and data-driven insights to ensure a smooth user experience across all devices.
 
