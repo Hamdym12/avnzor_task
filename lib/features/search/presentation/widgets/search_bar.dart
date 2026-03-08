@@ -6,8 +6,37 @@ import 'package:avnzor_task/features/search/presentation/widgets/find_button.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SearchBarWidget extends StatelessWidget {
+class SearchBarWidget extends StatefulWidget {
   const SearchBarWidget({super.key});
+
+  @override
+  State<SearchBarWidget> createState() => _SearchBarWidgetState();
+}
+
+class _SearchBarWidgetState extends State<SearchBarWidget> {
+  final FocusNode _focusNode = FocusNode();
+  final TextEditingController _controller = TextEditingController();
+  bool _isFocused = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode.addListener(_onFocusChange);
+  }
+
+  void _onFocusChange() {
+    setState(() {
+      _isFocused = _focusNode.hasFocus;
+    });
+  }
+
+  @override
+  void dispose() {
+    _focusNode.removeListener(_onFocusChange);
+    _focusNode.dispose();
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +45,8 @@ class SearchBarWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(AppRadius.xxl16),
-        boxShadow: [
-          const BoxShadow(
+        boxShadow: const [
+          BoxShadow(
             color: AppColors.blackTransparent18,
             blurRadius: 24,
             offset: Offset(0, 8),
@@ -25,12 +54,13 @@ class SearchBarWidget extends StatelessWidget {
         ],
       ),
       child: Row(
-        mainAxisSize: MainAxisSize.min,
         children: [
           Expanded(
             child: AppTextField(
-              controller: TextEditingController(),
+              controller: _controller,
+              focusNode: _focusNode,
               hintText: 'Search biryani, chicken biryani, mutton biryani…',
+              textInputAction: TextInputAction.search,
               prefixIcon: Padding(
                 padding: EdgeInsetsDirectional.only(start: 12.w),
                 child: Icon(
@@ -41,23 +71,49 @@ class SearchBarWidget extends StatelessWidget {
               ),
             ),
           ),
-          Container(width: 1, height: 28.h, color: AppColors.gray200),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 6.w),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              spacing: 3.w,
-              children: [
-                Icon(
-                  Icons.location_on_outlined,
-                  size: 12.sp,
-                  color: AppColors.vividOrange,
-                ),
-                Text('Riyadh', style: AppTextStyles.font11Gray700Weight500),
-              ],
+          AnimatedSize(
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.fastEaseInToSlowEaseOut,
+            child: AnimatedOpacity(
+              duration: const Duration(milliseconds: 500),
+              opacity: _isFocused ? 0.0 : 1.0,
+              curve: Curves.fastEaseInToSlowEaseOut,
+              child: !_isFocused
+                  ? Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          width: 1,
+                          height: 28.h,
+                          color: AppColors.gray200,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 6.w),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            spacing: 3.w,
+                            children: [
+                              Icon(
+                                Icons.location_on_outlined,
+                                size: 12.sp,
+                                color: AppColors.vividOrange,
+                              ),
+                              Text(
+                                'Riyadh',
+                                style: AppTextStyles.font11Gray700Weight500,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(4.r),
+                          child: const FindButton(),
+                        ),
+                      ],
+                    )
+                  : const SizedBox.shrink(),
             ),
           ),
-          Padding(padding: EdgeInsets.all(4.r), child: const FindButton()),
         ],
       ),
     );
