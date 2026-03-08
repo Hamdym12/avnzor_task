@@ -142,4 +142,28 @@ abstract class AppTextStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.coolGray,
   );
+
+  static TextStyle font10AmberWeight700 = TextStyle(
+    fontSize: 10.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.amber,
+  );
+
+  static TextStyle font12WhiteWeight400 = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.white,
+  );
+
+  static TextStyle font12WhiteWeight700 = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.white,
+  );
+
+  static TextStyle font13PrimaryPomegranateWeight700 = TextStyle(
+    fontSize: 13.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.primaryPomegranate,
+  );
 }

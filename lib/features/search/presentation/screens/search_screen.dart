@@ -3,6 +3,7 @@ import 'package:avnzor_task/core/theming/app_colors.dart';
 import 'package:avnzor_task/features/search/presentation/widgets/addons_list.dart';
 import 'package:avnzor_task/features/search/presentation/widgets/biryani_categories_list.dart';
 import 'package:avnzor_task/features/search/presentation/widgets/menu_items_grid.dart';
+import 'package:avnzor_task/features/search/presentation/widgets/promotion_banner.dart';
 import 'package:avnzor_task/features/search/presentation/widgets/search_header.dart';
 import 'package:avnzor_task/features/search/presentation/widgets/search_top_app_bar_content.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,6 @@ class SearchScreen extends StatelessWidget {
             surfaceTintColor: Colors.transparent,
             elevation: 0,
             leadingWidth: 0,
-
             automaticallyImplyLeading: false,
             titleSpacing: 0,
             title: const SearchTopAppBarContent(),
@@ -50,6 +50,14 @@ class SearchScreen extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.only(bottom: 24.h),
               child: const AddonsList(),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w).copyWith(
+                bottom: 24.h,
+              ),
+              child: const PromotionBanner(),
             ),
           ),
         ],

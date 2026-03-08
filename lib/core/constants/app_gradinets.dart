@@ -26,6 +26,12 @@ abstract class AppGradients {
     end: Alignment.bottomRight,
   );
 
+  static const LinearGradient promoBannerGradient = LinearGradient(
+    colors: [Color(0xFF1A0A00), Color(0xFFC0392B), Color(0xFFF4A430)],
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+  );
+
   static LinearGradient primaryOverlayGradient = LinearGradient(
     colors: [
       AppColors.primaryPomegranate.withOpacity(0.88),
