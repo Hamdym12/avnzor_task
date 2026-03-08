@@ -1,19 +1,15 @@
 import 'package:avnzor_task/core/theming/app_colors.dart';
-import 'package:avnzor_task/features/search/data/biryani_addon_model.dart';
-import 'package:avnzor_task/features/search/presentation/widgets/addon_item_card.dart';
-import 'package:avnzor_task/features/search/presentation/widgets/addons_section_header.dart';
+import 'package:avnzor_task/features/search/domain/entities/store_addon_entity.dart';
+import 'package:avnzor_task/features/search/presentation/screens/widgets/addon_item_card.dart';
+import 'package:avnzor_task/features/search/presentation/screens/widgets/addons_section_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddonsList extends StatelessWidget {
-  const AddonsList({
-    super.key,
-    this.addons = BiryaniAddon.sampleAddons,
-    this.onAdd,
-  });
+  const AddonsList({super.key, required this.addons, this.onAdd});
 
-  final List<BiryaniAddon> addons;
-  final ValueChanged<BiryaniAddon>? onAdd;
+  final List<StoreAddonEntity> addons;
+  final ValueChanged<StoreAddonEntity>? onAdd;
 
   @override
   Widget build(BuildContext context) {

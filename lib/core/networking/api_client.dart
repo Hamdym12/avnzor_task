@@ -6,12 +6,13 @@ import '../helpers/toast_helper.dart';
 @Singleton()
 class ApiClient {
   final Dio _dio;
+
   ApiClient(this._dio);
 
   Future<Response> get({
     required String endPoint,
     Map<String, dynamic>? queryParameters,
-    int retries = 3
+    int retries = 3,
   }) async {
     int attempt = 0;
     final retryOptions = RetryOptions(
@@ -21,22 +22,21 @@ class ApiClient {
     );
 
     return retryOptions.retry(
-          () async {
+      () async {
         attempt++;
-        return _dio.get(
-          endPoint,
-          queryParameters: queryParameters,
-        );
+        return _dio.get(endPoint, queryParameters: queryParameters);
       },
       retryIf: (e) => e is DioException,
       onRetry: (e) {
         if (e is DioException) {
-          final message = e.message ??  'Unknown error';
+          final message = e.message ?? 'Unknown error';
 
           final shortMessage = message.length > 40
-              ? '${message.substring(0, 40)}...' : message;
+              ? '${message.substring(0, 40)}...'
+              : message;
           showToast(
-            message: "Error occurred: $shortMessage. Retrying… Attempt $attempt",
+            message:
+                "Error occurred: $shortMessage. Retrying… Attempt $attempt",
           );
         } else {
           showToast(
@@ -45,5 +45,12 @@ class ApiClient {
         }
       },
     );
+  }
+
+  Future<Response> post({
+    required String endPoint,
+    Map<String, dynamic>? data,
+  }) async {
+    return _dio.post(endPoint, data: data);
   }
 }

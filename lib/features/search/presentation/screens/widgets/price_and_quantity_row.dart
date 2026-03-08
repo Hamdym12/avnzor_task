@@ -1,13 +1,13 @@
 import 'package:avnzor_task/core/theming/app_text_styles.dart';
-import 'package:avnzor_task/features/search/data/biryani_item_model.dart';
-import 'package:avnzor_task/features/search/presentation/widgets/quantity_selector.dart';
+import 'package:avnzor_task/features/search/domain/entities/store_item_entity.dart';
+import 'package:avnzor_task/features/search/presentation/screens/widgets/quantity_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PriceAndQuantityRow extends StatelessWidget {
   const PriceAndQuantityRow({super.key, required this.item});
 
-  final BiryaniItem item;
+  final StoreItemEntity item;
 
   @override
   Widget build(BuildContext context) {

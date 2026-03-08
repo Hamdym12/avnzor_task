@@ -1,19 +1,15 @@
 import 'package:avnzor_task/core/theming/app_colors.dart';
-import 'package:avnzor_task/features/search/data/biryani_item_model.dart';
-import 'package:avnzor_task/features/search/presentation/widgets/menu_item_card.dart';
 import 'package:avnzor_task/core/theming/app_text_styles.dart';
+import 'package:avnzor_task/features/search/domain/entities/store_item_entity.dart';
+import 'package:avnzor_task/features/search/presentation/screens/widgets/menu_item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MenuItemsGrid extends StatelessWidget {
-  const MenuItemsGrid({
-    super.key,
-    this.items = BiryaniItem.sampleItems,
-    this.onAddToCart,
-  });
+  const MenuItemsGrid({super.key, required this.items, this.onAddToCart});
 
-  final List<BiryaniItem> items;
-  final ValueChanged<BiryaniItem>? onAddToCart;
+  final List<StoreItemEntity> items;
+  final ValueChanged<StoreItemEntity>? onAddToCart;
 
   int _crossAxisCount(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width;

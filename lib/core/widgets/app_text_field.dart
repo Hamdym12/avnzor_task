@@ -15,6 +15,7 @@ class AppTextField extends StatelessWidget {
     this.keyboardType,
     this.focusNode,
     this.textInputAction,
+    this.onFieldSubmitted,
   });
   final String? hintText;
   final TextEditingController controller;
@@ -25,6 +26,7 @@ class AppTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
   final FocusNode? focusNode;
+  final Function(String)? onFieldSubmitted;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +40,7 @@ class AppTextField extends StatelessWidget {
         readOnly: readOnly ?? false,
         onTap: onTap,
         textInputAction: textInputAction,
+        onSubmitted: onFieldSubmitted,
         keyboardType: keyboardType,
         onTapUpOutside: (v) => FocusScope.of(context).unfocus(),
         decoration: InputDecoration(

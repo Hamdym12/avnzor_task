@@ -2,14 +2,14 @@ import 'package:avnzor_task/core/constants/app_gradinets.dart';
 import 'package:avnzor_task/core/constants/app_radius.dart';
 import 'package:avnzor_task/core/theming/app_colors.dart';
 import 'package:avnzor_task/core/theming/app_text_styles.dart';
-import 'package:avnzor_task/features/search/data/biryani_addon_model.dart';
+import 'package:avnzor_task/features/search/domain/entities/store_addon_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddonItemCard extends StatelessWidget {
   const AddonItemCard({super.key, required this.addon, this.onAdd});
 
-  final BiryaniAddon addon;
+  final StoreAddonEntity addon;
   final VoidCallback? onAdd;
 
   @override
@@ -41,10 +41,7 @@ class AddonItemCard extends StatelessWidget {
                 topLeft: Radius.circular(AppRadius.xxl16),
                 topRight: Radius.circular(AppRadius.xxl16),
               ),
-              child: Image.asset(
-                  addon.imagePath,
-                  fit: BoxFit.cover
-              ),
+              child: Image.asset(addon.imagePath, fit: BoxFit.cover),
             ),
           ),
           Padding(
@@ -72,8 +69,8 @@ class AddonItemCard extends StatelessWidget {
                             .copyWith(
                               fontSize: 12.sp,
                               color: AppColors.burntOrange,
-                             fontWeight: FontWeight.bold
-                        ),
+                              fontWeight: FontWeight.bold,
+                            ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),

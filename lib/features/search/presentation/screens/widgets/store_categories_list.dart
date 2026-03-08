@@ -1,20 +1,20 @@
-import 'package:avnzor_task/features/search/data/biryani_category_model.dart';
-import 'package:avnzor_task/features/search/presentation/widgets/categories_section_header.dart';
-import 'package:avnzor_task/features/search/presentation/widgets/category_chip.dart';
+import 'package:avnzor_task/features/search/data/models/store_category_model.dart';
+import 'package:avnzor_task/features/search/presentation/screens/widgets/categories_section_header.dart';
+import 'package:avnzor_task/features/search/presentation/screens/widgets/category_chip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class BiryaniCategoriesList extends StatefulWidget {
-  const BiryaniCategoriesList({super.key, this.onViewAll, this.onCategoryTap});
+class StoreCategoriesList extends StatefulWidget {
+  const StoreCategoriesList({super.key, this.onViewAll, this.onCategoryTap});
 
   final VoidCallback? onViewAll;
   final ValueChanged<String>? onCategoryTap;
 
   @override
-  State<BiryaniCategoriesList> createState() => _BiryaniCategoriesListState();
+  State<StoreCategoriesList> createState() => _StoreCategoriesListState();
 }
 
-class _BiryaniCategoriesListState extends State<BiryaniCategoriesList> {
+class _StoreCategoriesListState extends State<StoreCategoriesList> {
   int? _selectedIndex;
 
   @override
@@ -33,10 +33,10 @@ class _BiryaniCategoriesListState extends State<BiryaniCategoriesList> {
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h),
-            itemCount: BiryaniCategory.categories.length,
+            itemCount: StoreCategoryModel.categories.length,
             separatorBuilder: (_, __) => SizedBox(width: 10.w),
             itemBuilder: (context, index) {
-              final category = BiryaniCategory.categories[index];
+              final category = StoreCategoryModel.categories[index];
               return CategoryChip(
                 emoji: category.emoji,
                 label: category.label,

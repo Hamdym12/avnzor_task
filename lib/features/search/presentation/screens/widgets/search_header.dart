@@ -1,9 +1,9 @@
 import 'package:avnzor_task/core/theming/app_text_styles.dart';
-import 'package:avnzor_task/features/search/presentation/widgets/background_layer.dart';
-import 'package:avnzor_task/features/search/presentation/widgets/hero_headline.dart';
-import 'package:avnzor_task/features/search/presentation/widgets/rating_pill.dart';
-import 'package:avnzor_task/features/search/presentation/widgets/search_bar.dart';
-import 'package:avnzor_task/features/search/presentation/widgets/stats_row.dart';
+import 'package:avnzor_task/features/search/presentation/screens/widgets/background_layer.dart';
+import 'package:avnzor_task/features/search/presentation/screens/widgets/hero_headline.dart';
+import 'package:avnzor_task/features/search/presentation/screens/widgets/rating_pill.dart';
+import 'package:avnzor_task/features/search/presentation/screens/widgets/search_bar.dart';
+import 'package:avnzor_task/features/search/presentation/screens/widgets/stats_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

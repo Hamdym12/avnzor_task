@@ -1,14 +1,12 @@
-import 'package:avnzor_task/features/search/data/biryani_item_model.dart';
-import 'package:avnzor_task/features/search/presentation/widgets/menu_item_badge.dart';
+import 'package:avnzor_task/core/constants/app_radius.dart';
+import 'package:avnzor_task/features/search/domain/entities/store_item_entity.dart';
+import 'package:avnzor_task/features/search/presentation/screens/widgets/menu_item_badge.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CardImage extends StatelessWidget {
-  const CardImage({super.key, required this.imagePath, required this.badge});
-
+  const CardImage({super.key, required this.imagePath});
   final String imagePath;
-  final BiryaniItemBadge badge;
-
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -21,12 +19,11 @@ class CardImage extends StatelessWidget {
             width: double.infinity,
           ),
         ),
-        if (badge != BiryaniItemBadge.none)
           Positioned(
             top: 8.h,
             left: 8.w,
-            child: MenuItemBadge(badge: badge),
-          ),
+            child: const MenuItemBadge(),
+         ),
       ],
     );
   }

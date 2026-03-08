@@ -1,19 +1,19 @@
 import 'package:avnzor_task/core/constants/app_radius.dart';
 import 'package:avnzor_task/core/theming/app_colors.dart';
 import 'package:avnzor_task/core/theming/app_text_styles.dart';
-import 'package:avnzor_task/features/search/data/biryani_item_model.dart';
-import 'package:avnzor_task/features/search/presentation/widgets/add_to_cart_button.dart';
-import 'package:avnzor_task/features/search/presentation/widgets/card_image.dart';
-import 'package:avnzor_task/features/search/presentation/widgets/price_and_quantity_row.dart';
-import 'package:avnzor_task/features/search/presentation/widgets/rating_row.dart';
+import 'package:avnzor_task/features/search/domain/entities/store_item_entity.dart';
+import 'package:avnzor_task/features/search/presentation/screens/widgets/add_to_cart_button.dart';
+import 'package:avnzor_task/features/search/presentation/screens/widgets/card_image.dart';
+import 'package:avnzor_task/features/search/presentation/screens/widgets/price_and_quantity_row.dart';
+import 'package:avnzor_task/features/search/presentation/screens/widgets/rating_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MenuItemCard extends StatelessWidget {
   const MenuItemCard({super.key, required this.item, this.onAddToCart});
 
-  final BiryaniItem item;
-  final ValueChanged<BiryaniItem>? onAddToCart;
+  final StoreItemEntity item;
+  final ValueChanged<StoreItemEntity>? onAddToCart;
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +40,7 @@ class MenuItemCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CardImage(
-              imagePath: item.imagePath,
-              badge: item.badge
-          ),
+          CardImage(imagePath: item.imagePath),
           Padding(
             padding: EdgeInsets.all(10.r),
             child: Column(
@@ -52,7 +49,7 @@ class MenuItemCard extends StatelessWidget {
                 Text(
                   item.name,
                   style: AppTextStyles.font14RichBlackWeight600.copyWith(
-                    fontSize: 13.sp
+                    fontSize: 13.sp,
                   ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -61,7 +58,7 @@ class MenuItemCard extends StatelessWidget {
                 Text(
                   item.restaurantName,
                   style: AppTextStyles.font12CoolGrayWeight400.copyWith(
-                    fontSize: 12.sp
+                    fontSize: 12.sp,
                   ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,

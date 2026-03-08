@@ -2,8 +2,10 @@ import 'package:avnzor_task/core/constants/app_radius.dart';
 import 'package:avnzor_task/core/theming/app_colors.dart';
 import 'package:avnzor_task/core/theming/app_text_styles.dart';
 import 'package:avnzor_task/core/widgets/app_text_field.dart';
-import 'package:avnzor_task/features/search/presentation/widgets/find_button.dart';
+import 'package:avnzor_task/features/search/presentation/controller/search_cubit.dart';
+import 'package:avnzor_task/features/search/presentation/screens/widgets/find_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SearchBarWidget extends StatefulWidget {
@@ -28,6 +30,11 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
     setState(() {
       _isFocused = _focusNode.hasFocus;
     });
+  }
+
+  void _onSearch() {
+    context.read<SearchCubit>().searchItems(_controller.text.trim());
+    _focusNode.unfocus();
   }
 
   @override
@@ -63,6 +70,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
               focusNode: _focusNode,
               hintText: 'Search biryani, chicken biryani, mutton biryani…',
               textInputAction: TextInputAction.search,
+              onFieldSubmitted: (_) => _onSearch(),
               prefixIcon: Padding(
                 padding: EdgeInsetsDirectional.only(start: 12.w),
                 child: Icon(
@@ -109,11 +117,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {
-                            _focusNode.requestFocus();
-
-                            /// should search for items
-                          },
+                          onTap: _onSearch,
                           child: Padding(
                             padding: EdgeInsets.all(4.r),
                             child: const FindButton(),

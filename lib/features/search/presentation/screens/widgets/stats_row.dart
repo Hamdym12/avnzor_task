@@ -1,4 +1,4 @@
-import 'package:avnzor_task/features/search/presentation/widgets/stat_item.dart';
+import 'package:avnzor_task/features/search/presentation/screens/widgets/stat_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
