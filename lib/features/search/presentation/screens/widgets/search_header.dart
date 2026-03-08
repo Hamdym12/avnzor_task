@@ -16,12 +16,12 @@ class SearchHeader extends StatelessWidget {
 
     return SizedBox(
       width: MediaQuery.sizeOf(context).width,
-      height: isWide ? 350.h : 320.h,
+      height: isWide ? 500.h : 320.h,
       child: Stack(
         children: [
           const BackgroundLayer(),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w).copyWith(top: 20.h),
+            padding: EdgeInsets.symmetric(horizontal: 20.w).copyWith(top: isWide ? 70.h: 24.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

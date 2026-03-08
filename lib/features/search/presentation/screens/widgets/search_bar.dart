@@ -50,7 +50,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
     final bool isWide = MediaQuery.sizeOf(context).width >= 600;
 
     return Container(
-      width: MediaQuery.sizeOf(context).width * 0.8,
+      width: MediaQuery.sizeOf(context).width * (isWide ? 0.5 : 0.8),
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(AppRadius.xxl16),

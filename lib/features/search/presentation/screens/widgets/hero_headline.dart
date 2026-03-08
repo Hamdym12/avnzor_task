@@ -17,7 +17,7 @@ class HeroHeadline extends StatelessWidget {
           TextSpan(
             text: 'Order Fresh Biryani ',
             style: AppTextStyles.font22WhiteWeight800.copyWith(
-              fontSize: isWide ? 32.sp : 22.sp,
+              fontSize: isWide ? 56.sp : 22.sp,
               height: 1.25,
               letterSpacing: -0.5,
             ),
@@ -25,7 +25,7 @@ class HeroHeadline extends StatelessWidget {
           TextSpan(
             text: 'Near You',
             style: AppTextStyles.font22WhiteWeight800.copyWith(
-              fontSize: isWide ? 32.sp : 22.sp,
+              fontSize: isWide ? 56.sp : 22.sp,
               color: AppColors.amber,
               height: 1.25,
               letterSpacing: -0.5,

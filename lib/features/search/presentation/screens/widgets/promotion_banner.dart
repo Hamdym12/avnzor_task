@@ -128,7 +128,7 @@ class PromotionBanner extends StatelessWidget {
             textDirection: Directionality.of(context),
             child: Text(
               '🍛',
-              style: TextStyle(fontSize: isWide ? 140.sp : 100.sp),
+              style: TextStyle(fontSize: isWide ? 120.sp : 100.sp),
             ),
           ),
         ],

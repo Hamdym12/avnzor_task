@@ -27,12 +27,12 @@ class SearchTopAppBarContent extends StatelessWidget {
                 Icon(
                   Icons.location_on_outlined,
                   color: AppColors.vividOrange,
-                  size: isWide ? 18.sp : 14.sp,
+                  size: isWide ? 18.sp : 15.sp,
                 ),
                 Text(
                   'Riyadh, Saudi Arabia',
                   style: AppTextStyles.font12SlateGrayWeight500.copyWith(
-                    fontSize: isWide ? 15.sp : 12.sp,
+                    fontSize: isWide ? 15.sp : 13.sp,
                   ),
                 ),
               ],
@@ -43,11 +43,11 @@ class SearchTopAppBarContent extends StatelessWidget {
             child: Row(
               spacing: 3.w,
               children: [
-                Text('🍛', style: TextStyle(fontSize: isWide ? 20.sp : 16.sp)),
+                Text('🍛', style: TextStyle(fontSize: isWide ? 20.sp : 18.sp)),
                 Text(
                   'BiryaniHub',
                   style: AppTextStyles.font14PrimaryPomegranateBold.copyWith(
-                    fontSize: isWide ? 18.sp : 14.sp,
+                    fontSize: isWide ? 18.sp : 15.sp,
                   ),
                 ),
               ],
@@ -105,12 +105,12 @@ class SearchTopAppBarContent extends StatelessWidget {
                           Icon(
                             Icons.shopping_bag_outlined,
                             color: AppColors.white,
-                            size: isWide ? 16.sp : 12.sp,
+                            size: isWide ? 16.sp : 13.sp,
                           ),
                           Text(
                             'Cart',
                             style: AppTextStyles.font12WhiteWeight600.copyWith(
-                              fontSize: isWide ? 15.sp : 12.sp,
+                              fontSize: isWide ? 15.sp : 13.sp,
                             ),
                           ),
                         ],

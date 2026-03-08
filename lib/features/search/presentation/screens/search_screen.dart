@@ -5,6 +5,7 @@ import 'package:avnzor_task/features/search/data/models/store_addon_model.dart';
 import 'package:avnzor_task/features/search/presentation/controller/search_cubit.dart';
 import 'package:avnzor_task/features/search/presentation/screens/widgets/addons_list.dart';
 import 'package:avnzor_task/features/search/presentation/screens/widgets/store_categories_list.dart';
+import 'package:avnzor_task/features/search/presentation/screens/widgets/footer.dart';
 import 'package:avnzor_task/features/search/presentation/screens/widgets/menu_items_grid.dart';
 import 'package:avnzor_task/features/search/presentation/screens/widgets/promotion_banner.dart';
 import 'package:avnzor_task/features/search/presentation/screens/widgets/search_header.dart';
@@ -69,7 +70,10 @@ class SearchScreen extends StatelessWidget {
                         child: Column(
                           spacing: 12.h,
                           children: [
-                            Text(state.errorMessage, textAlign: TextAlign.center),
+                            Text(
+                              state.errorMessage,
+                              textAlign: TextAlign.center,
+                            ),
                             OutlinedButton(
                               onPressed: () {
                                 context.read<SearchCubit>().searchItems('');
@@ -106,6 +110,13 @@ class SearchScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
                 child: const PromotionBanner(),
               ),
+            ),
+            if (MediaQuery.sizeOf(context).width >= 1100)
+               SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 48.h),
+                    child: const Footer(),
+                )
             ),
           ],
         ),
