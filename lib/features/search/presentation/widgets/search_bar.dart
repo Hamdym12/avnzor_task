@@ -40,6 +40,8 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isWide = MediaQuery.sizeOf(context).width >= 600;
+
     return Container(
       width: MediaQuery.sizeOf(context).width * 0.8,
       decoration: BoxDecoration(
@@ -65,7 +67,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                 padding: EdgeInsetsDirectional.only(start: 12.w),
                 child: Icon(
                   Icons.search_rounded,
-                  size: 18.sp,
+                  size: isWide ? 24.sp : 18.sp,
                   color: AppColors.coolGray,
                 ),
               ),
@@ -95,12 +97,13 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                             children: [
                               Icon(
                                 Icons.location_on_outlined,
-                                size: 12.sp,
+                                size: isWide ? 16.sp : 12.sp,
                                 color: AppColors.vividOrange,
                               ),
                               Text(
                                 'Riyadh',
-                                style: AppTextStyles.font11Gray700Weight500,
+                                style: AppTextStyles.font11Gray700Weight500
+                                    .copyWith(fontSize: isWide ? 14.sp : 11.sp),
                               ),
                             ],
                           ),

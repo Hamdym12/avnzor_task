@@ -9,16 +9,24 @@ class StatItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isWide = MediaQuery.sizeOf(context).width >= 600;
+
     return Column(
       children: [
         Text(
           value,
           style: AppTextStyles.font16WhiteWeight700.copyWith(
+            fontSize: isWide ? 24.sp : 16.sp,
             letterSpacing: -0.3,
           ),
         ),
         SizedBox(height: 2.h),
-        Text(label, style: AppTextStyles.font12WhiteTransparent80Weight400),
+        Text(
+          label,
+          style: AppTextStyles.font12WhiteTransparent80Weight400.copyWith(
+            fontSize: isWide ? 16.sp : 12.sp,
+          ),
+        ),
       ],
     );
   }

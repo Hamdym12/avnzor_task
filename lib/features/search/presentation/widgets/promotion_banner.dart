@@ -10,6 +10,8 @@ class PromotionBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isWide = MediaQuery.sizeOf(context).width >= 600;
+
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -29,15 +31,18 @@ class PromotionBanner extends StatelessWidget {
                   'LIMITED TIME OFFER',
                   style: AppTextStyles.font10AmberWeight700.copyWith(
                     color: AppColors.sunflower,
+                    fontSize: isWide ? 14.sp : 10.sp,
                   ),
                 ),
                 SizedBox(height: 8.h),
                 ConstrainedBox(
-                  constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width * 0.8),
+                  constraints: BoxConstraints(
+                    maxWidth: MediaQuery.sizeOf(context).width * 0.8,
+                  ),
                   child: Text(
                     'Get 20% OFF Your First Order',
                     style: AppTextStyles.font22WhiteWeight800.copyWith(
-                      fontSize: 20.sp,
+                      fontSize: isWide ? 28.sp : 20.sp,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -53,6 +58,7 @@ class PromotionBanner extends StatelessWidget {
                       'Use code',
                       style: AppTextStyles.font12WhiteWeight400.copyWith(
                         color: AppColors.whiteTransparent80,
+                        fontSize: isWide ? 16.sp : 12.sp,
                       ),
                     ),
                     Container(
@@ -66,13 +72,16 @@ class PromotionBanner extends StatelessWidget {
                       ),
                       child: SelectableText(
                         'BIRYANI20',
-                        style: AppTextStyles.font12WhiteWeight700,
+                        style: AppTextStyles.font12WhiteWeight700.copyWith(
+                          fontSize: isWide ? 16.sp : 12.sp,
+                        ),
                       ),
                     ),
                     Text(
                       'at checkout',
                       style: AppTextStyles.font12WhiteWeight400.copyWith(
                         color: AppColors.whiteTransparent80,
+                        fontSize: isWide ? 16.sp : 12.sp,
                       ),
                     ),
                   ],
@@ -94,14 +103,15 @@ class PromotionBanner extends StatelessWidget {
                         children: [
                           Text(
                             'Order Now',
-                            style:
-                                AppTextStyles.font13PrimaryPomegranateWeight700,
+                            style: AppTextStyles
+                                .font13PrimaryPomegranateWeight700
+                                .copyWith(fontSize: isWide ? 17.sp : 13.sp),
                           ),
                           SizedBox(width: 4.w),
                           Icon(
                             Icons.chevron_right_rounded,
                             color: AppColors.primaryPomegranate,
-                            size: 16.sp,
+                            size: isWide ? 20.sp : 16.sp,
                           ),
                         ],
                       ),
@@ -117,10 +127,8 @@ class PromotionBanner extends StatelessWidget {
             bottom: 30.h,
             textDirection: Directionality.of(context),
             child: Text(
-                '🍛',
-              style: TextStyle(
-                fontSize: 100.sp,
-              ),
+              '🍛',
+              style: TextStyle(fontSize: isWide ? 140.sp : 100.sp),
             ),
           ),
         ],

@@ -9,8 +9,11 @@ class SearchTopAppBarContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isWide = MediaQuery.sizeOf(context).width >= 600;
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.w),
+      padding: EdgeInsets.symmetric(horizontal: 16.w).copyWith(
+        top: isWide ? 3.h : 0,
+      ),
       child: Stack(
         alignment: AlignmentDirectional.center,
         children: [
@@ -24,11 +27,13 @@ class SearchTopAppBarContent extends StatelessWidget {
                 Icon(
                   Icons.location_on_outlined,
                   color: AppColors.vividOrange,
-                  size: 14.sp,
+                  size: isWide ? 18.sp : 14.sp,
                 ),
                 Text(
                   'Riyadh, Saudi Arabia',
-                  style: AppTextStyles.font12SlateGrayWeight500,
+                  style: AppTextStyles.font12SlateGrayWeight500.copyWith(
+                    fontSize: isWide ? 15.sp : 12.sp,
+                  ),
                 ),
               ],
             ),
@@ -38,48 +43,92 @@ class SearchTopAppBarContent extends StatelessWidget {
             child: Row(
               spacing: 3.w,
               children: [
-                Text('🍛', style: TextStyle(fontSize: 16.sp)),
+                Text('🍛', style: TextStyle(fontSize: isWide ? 20.sp : 16.sp)),
                 Text(
                   'BiryaniHub',
-                  style: AppTextStyles.font14PrimaryPomegranateBold,
+                  style: AppTextStyles.font14PrimaryPomegranateBold.copyWith(
+                    fontSize: isWide ? 18.sp : 14.sp,
+                  ),
                 ),
               ],
             ),
           ),
           Align(
             alignment: AlignmentDirectional.centerEnd,
-            child: Stack(
-              clipBehavior: Clip.none,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              spacing: 8.w,
               children: [
+                if (isWide)
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 6.w),
+                  padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 8.w),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(9),
-                    gradient: AppGradients.orangeRedGradient,
+                    color: AppColors.cream,
+                    borderRadius: BorderRadius.circular(50),
                   ),
                   child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     spacing: 3.w,
                     children: [
                       Icon(
-                        Icons.shopping_bag_outlined,
-                        color: AppColors.white,
-                        size: 12.sp,
+                          Icons.access_time_rounded,
+                          color: AppColors.fieryRed,
+                          size: 18.sp,
                       ),
-                      Text('Cart', style: AppTextStyles.font12WhiteWeight600),
+                      Text(
+                        '30 min delivery',
+                        style: AppTextStyles.font13RichBlackWeight500
+                            .copyWith(
+                          fontSize: 16.sp,
+                          color: AppColors.fieryRed,
+                        ),
+                      ),
                     ],
                   ),
                 ),
-                Positioned(
-                  top: -8,
-                  right: -5,
-                  child: Badge.count(
-                    count: 3,
-                    backgroundColor: AppColors.sunflower,
-                    textColor: AppColors.richBlack,
-                    textStyle: AppTextStyles.font10RichBlackWeight700,
-                  ),
+                Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        vertical: isWide ? 5.h : 3.h,
+                        horizontal: isWide ? 10.w : 6.w,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(14),
+                        gradient: AppGradients.orangeRedGradient,
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        spacing: 3.w,
+                        children: [
+                          Icon(
+                            Icons.shopping_bag_outlined,
+                            color: AppColors.white,
+                            size: isWide ? 16.sp : 12.sp,
+                          ),
+                          Text(
+                            'Cart',
+                            style: AppTextStyles.font12WhiteWeight600.copyWith(
+                              fontSize: isWide ? 15.sp : 12.sp,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      top: -8,
+                      right: -5,
+                      child: Badge.count(
+                        count: 3,
+                        backgroundColor: AppColors.sunflower,
+                        textColor: AppColors.richBlack,
+                        textStyle: AppTextStyles.font10RichBlackWeight700.copyWith(
+                          fontSize: isWide ? 12.sp : 10.sp,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

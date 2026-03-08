@@ -9,20 +9,31 @@ class FindButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isWide = MediaQuery.sizeOf(context).width >= 600;
+
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.h),
+      padding: EdgeInsets.symmetric(
+        horizontal: isWide ? 12.w : 8.w,
+        vertical: isWide ? 10.h : 6.h,
+      ),
       decoration: BoxDecoration(
         color: AppColors.primaryPomegranate,
-        borderRadius: BorderRadius.circular(11),
+        borderRadius: BorderRadius.circular(isWide ? 16 : 11),
         gradient: AppGradients.amberRedGradient,
       ),
       child: Row(
         spacing: 2.w,
         children: [
-          Icon(Icons.search_rounded, size: 12.sp, color: AppColors.white),
+          Icon(
+            Icons.search_rounded,
+            size: isWide ? 16.sp : 12.sp,
+            color: AppColors.white,
+          ),
           Text(
             'Find Biryani',
-            style: AppTextStyles.font11WhiteWeight600,
+            style: AppTextStyles.font11WhiteWeight600.copyWith(
+              fontSize: isWide ? 14.sp : 11.sp,
+            ),
             maxLines: 1,
           ),
         ],

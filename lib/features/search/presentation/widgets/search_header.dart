@@ -12,9 +12,11 @@ class SearchHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isWide = MediaQuery.sizeOf(context).width >= 600;
+
     return SizedBox(
       width: MediaQuery.sizeOf(context).width,
-      height: 320.h,
+      height: isWide ? 350.h : 320.h,
       child: Stack(
         children: [
           const BackgroundLayer(),
@@ -31,7 +33,7 @@ class SearchHeader extends StatelessWidget {
                   'Hot, authentic biryani delivered in minutes.\nStraight from the dum pot to your door.',
                   textAlign: TextAlign.center,
                   style: AppTextStyles.font14WhiteTransparent85Weight400
-                      .copyWith(height: 1.5),
+                      .copyWith(height: 1.5, fontSize: isWide ? 18.sp : 14.sp),
                 ),
                 SizedBox(height: 24.h),
                 const SearchBarWidget(),

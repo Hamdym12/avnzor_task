@@ -15,6 +15,7 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isWide = MediaQuery.sizeOf(context).width >= 600;
     return Scaffold(
       backgroundColor: AppColors.white,
       body: CustomScrollView(
@@ -31,7 +32,7 @@ class SearchScreen extends StatelessWidget {
             automaticallyImplyLeading: false,
             titleSpacing: 0,
             title: const SearchTopAppBarContent(),
-            toolbarHeight: 45.h,
+            toolbarHeight: isWide ? 55.h : 45.h,
             actionsPadding: EdgeInsets.zero,
           ),
           const SliverToBoxAdapter(child: SearchHeader()),
