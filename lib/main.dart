@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:bloc/bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
@@ -15,13 +16,21 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
   await AppConfig().initSystemSettings();
-  if(kDebugMode) Bloc.observer = AppBlocObserver();
+  if (kDebugMode) Bloc.observer = AppBlocObserver();
+
   runApp(
-    const EasyLocalizationConfig(
-      child: ScreenUtilInit(
-        designSize: Size(393, 852),
-        minTextAdapt: true,
-        child: MainApp(),
+    EasyLocalizationConfig(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final width = max(393.0, constraints.maxWidth);
+          final height = max(852.0, constraints.maxHeight);
+          return ScreenUtilInit(
+            designSize: Size(width, height),
+            minTextAdapt: true,
+            splitScreenMode: true,
+            child: const MainApp(),
+          );
+        },
       ),
     ),
   );

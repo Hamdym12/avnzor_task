@@ -18,6 +18,7 @@ class SearchScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.white,
       body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
         slivers: [
           SliverAppBar(
             floating: true,
@@ -36,27 +37,25 @@ class SearchScreen extends StatelessWidget {
           const SliverToBoxAdapter(child: SearchHeader()),
           SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.h),
+              padding: EdgeInsets.symmetric(vertical: 24.h),
               child: const BiryaniCategoriesList(),
             ),
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.only(top: 24.h, bottom: 24.h),
+              padding: EdgeInsets.only(bottom: 24.h),
               child: const MenuItemsGrid(),
             ),
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.only(bottom: 24.h),
+              padding: EdgeInsets.symmetric(vertical: 24.h),
               child: const AddonsList(),
             ),
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w).copyWith(
-                bottom: 24.h,
-              ),
+              padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 24.h),
               child: const PromotionBanner(),
             ),
           ),

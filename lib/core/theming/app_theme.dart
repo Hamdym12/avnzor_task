@@ -12,9 +12,6 @@ class AppTheme {
   AppTheme._();
 
   static ThemeData get light => ThemeData(
-    splashFactory: Platform.isIOS
-        ? NoSplash.splashFactory
-        : InkRipple.splashFactory,
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
     pageTransitionsTheme: const PageTransitionsTheme(

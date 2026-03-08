@@ -17,9 +17,9 @@ class MenuItemsGrid extends StatelessWidget {
 
   int _crossAxisCount(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width;
-    if (width >= 1024) return 4; // web / large tablet
-    if (width >= 600) return 3; // tablet
-    return 2; // mobile
+    if (width >= 1024) return 4;
+    if (width >= 900) return 3;
+    return 2;
   }
 
   @override
@@ -53,9 +53,9 @@ class MenuItemsGrid extends StatelessWidget {
 
   double _mainAxisExtent(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width;
-    if (width >= 1024) return 314.h;
-    if (width >= 600) return 284.h;
-    return 284.h;
+    if (width >= 1200) return 440.h;
+    if (width >= 900) return 325.h;
+    return 295.h;
   }
 }
 
