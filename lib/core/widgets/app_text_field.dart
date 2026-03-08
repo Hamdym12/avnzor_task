@@ -1,0 +1,46 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:avnzor_task/core/theming/app_colors.dart';
+import 'package:avnzor_task/core/theming/app_text_styles.dart';
+
+class AppTextField extends StatelessWidget {
+  const AppTextField({super.key, this.hintText, required this.controller, this.readOnly, this.onTap, this.suffixIcon, this.prefixIcon,  this.keyboardType});
+  final String? hintText;
+  final TextEditingController controller;
+  final bool? readOnly;
+  final Function()? onTap;
+  final Widget? suffixIcon;
+  final Widget? prefixIcon;
+  final TextInputType? keyboardType;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: TextField(
+        controller: controller,
+        cursorWidth: 1.5,
+        readOnly: readOnly??false,
+        onTap: onTap,
+        textInputAction: TextInputAction.done,
+        keyboardType: keyboardType,
+        onTapUpOutside: (v)=> FocusScope.of(context).unfocus(),
+        decoration: InputDecoration(
+          fillColor: AppColors.white,
+          suffixIcon: suffixIcon,
+          prefixIcon: prefixIcon,
+          prefixIconConstraints: BoxConstraints(maxHeight: 20.w),
+          contentPadding: EdgeInsets.symmetric(horizontal: 8.w),
+          hintText: hintText,
+          hintStyle: AppTextStyles.font14ColGray400.copyWith(
+              fontSize: 12.sp
+          ),
+          border: InputBorder.none,
+          enabledBorder: InputBorder.none,
+          focusedBorder: InputBorder.none,
+          counterText: '',
+        ),
+        style: AppTextStyles.font14ColGray400
+      ),
+    );
+  }
+}

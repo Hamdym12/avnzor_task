@@ -1,0 +1,74 @@
+name: avnzor_task
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # iOS design system
+  cupertino_icons: ^1.0.8
+  liquid_glass_renderer: ^0.2.0-dev.4
+  # object equity and hashing
+  equatable: ^2.0.7
+  # state Management
+  bloc: ^9.0.1
+  flutter_bloc: ^9.1.0
+  # dependency injection
+  get_it: ^8.0.3
+  injectable: ^2.5.0
+  # alert notification
+  fluttertoast: ^8.2.12
+  # routing
+  auto_route: ^10.2.0
+  # localization
+  easy_localization: ^3.0.8
+  # fonts
+  google_fonts: ^6.3.2
+  # animations & styling
+  animations: ^2.1.0
+  flutter_animate: ^4.5.2
+  page_transition: ^2.2.1
+  gradient_borders: ^1.0.2
+  shimmer: ^3.0.0
+  # svg image processing
+  flutter_svg: ^2.2.1
+  # responsive ui
+  flutter_screenutil: ^5.9.3
+  # drop down selection
+  drop_down_list: ^2.0.0
+  # calender
+  syncfusion_flutter_datepicker: ^31.2.3
+  # page view indicator
+  smooth_page_indicator: ^1.2.1
+  # country code and flags
+  country_code_picker: ^3.4.1
+  # pinput otp field
+  pinput: ^5.0.2
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  # code gen
+  injectable_generator:
+  build_runner:
+  auto_route_generator:
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/translations/
+    - assets/images/pngs/
+
+scripts: # this script is used to generate the locale keys for translations
+  gen:locales:
+    run: flutter pub run easy_localization:generate -S "assets/translations" -O "lib/core/localization" -o "locale_keys.g.dart" -f keys
