@@ -1,17 +1,27 @@
-# avnzor_task
+# Avnzor Task - Search UI
 
-A new Flutter project.
+This application is a specialized platform built for high-performance searching.
+The project is designed with a focus on responsiveness, reliability, and data-driven insights to ensure a smooth user experience across all devices.
 
-## Getting Started
+## Technology Stack
 
-This project is a starting point for a Flutter application.
+The app uses a modern architecture to handle complex business requirements:
+- State Management: Reactive state transitions for a predictable user interface.
+- Dependency Injection: Managed service lifecycles for clean and maintainable code.
+- Networking: Custom communication layers with automated error handling and retries.
+- Interface Design: Responsive scaling and a premium animation system to enhance user engagement.
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Project Walkthrough
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Adaptive Search Experience
+The search interface is built to be fast and visually consistent on various screen sizes.
+- Desktop and Tablet Optimization: A professional footer is available on larger screens, providing easy access to branding, contact details, and social media.
+- Layout Management: The category and menu grids automatically adjust based on available screen space.
+
+---
+
+## Project Structure
+- lib/core: Infrastructure and shared services.
+- lib/features/search: Main application logic and user interface for search.
