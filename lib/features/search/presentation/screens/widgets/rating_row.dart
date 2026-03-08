@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class RatingRow extends StatelessWidget {
   const RatingRow({super.key, required this.rating});
 
-  final double rating;
+  final num rating;
 
   @override
   Widget build(BuildContext context) {

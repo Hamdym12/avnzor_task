@@ -40,14 +40,14 @@ class MenuItemCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CardImage(imagePath: item.imagePath),
+          CardImage(imagePath: item.imagePath ?? ''),
           Padding(
             padding: EdgeInsets.all(10.r),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  item.name,
+                  item.name ?? '',
                   style: AppTextStyles.font14RichBlackWeight600.copyWith(
                     fontSize: 13.sp,
                   ),
@@ -56,7 +56,7 @@ class MenuItemCard extends StatelessWidget {
                 ),
                 SizedBox(height: 4.h),
                 Text(
-                  item.restaurantName,
+                  item.restaurantName ?? '',
                   style: AppTextStyles.font12CoolGrayWeight400.copyWith(
                     fontSize: 12.sp,
                   ),
@@ -64,7 +64,7 @@ class MenuItemCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 SizedBox(height: 6.h),
-                RatingRow(rating: item.rating),
+                RatingRow(rating: item.rating ?? 0),
                 SizedBox(height: 6.h),
                 PriceAndQuantityRow(item: item),
                 SizedBox(height: 12.h),

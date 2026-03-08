@@ -27,7 +27,7 @@ class SearchRemoteDataSourceImpl implements BaseSearchDataSource {
 
     final List data = response.data is List
         ? response.data
-        : (response.data['data'] ?? []);
+        : (response.data['dataResponse']['stores'] ?? []);
 
     return data.map((json) => StoreItemModel.fromJson(json)).toList();
   }

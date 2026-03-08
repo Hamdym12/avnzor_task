@@ -2,19 +2,19 @@ import 'package:equatable/equatable.dart';
 
 class StoreItemEntity extends Equatable {
   final String id;
-  final String name;
-  final String restaurantName;
-  final double rating;
-  final double priceSar;
-  final String imagePath;
+  final String? name;
+  final String? restaurantName;
+  final num? rating;
+  final num? priceSar;
+  final String? imagePath;
 
   const StoreItemEntity({
     required this.id,
-    required this.name,
-    required this.restaurantName,
-    required this.rating,
-    required this.priceSar,
-    required this.imagePath,
+     this.name,
+     this.restaurantName,
+     this.rating,
+     this.priceSar,
+     this.imagePath,
   });
 
   @override

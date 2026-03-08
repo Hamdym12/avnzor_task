@@ -1,5 +1,3 @@
-import 'package:avnzor_task/core/constants/app_radius.dart';
-import 'package:avnzor_task/features/search/domain/entities/store_item_entity.dart';
 import 'package:avnzor_task/features/search/presentation/screens/widgets/menu_item_badge.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,7 +11,7 @@ class CardImage extends StatelessWidget {
       children: [
         AspectRatio(
           aspectRatio: 1.55,
-          child: Image.asset(
+          child: Image.network(
             imagePath,
             fit: BoxFit.cover,
             width: double.infinity,
